@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.chart-container {
+  width: 800px;
+  margin: auto;
+}
+
+.chart {
+  margin: 20px 0;
+}
+
+#yearSelect {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
