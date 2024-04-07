@@ -1,18 +1,127 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
-.chart-container {
-  width: 800px;
+.container {
+  max-width: 1200px;
   margin: auto;
+  padding: 20px;
 }
 
-.chart {
-  margin: 20px 0;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
-#yearSelect {
-  width: 100%;
+header h1 {
+  font-weight: 500;
+}
+
+header select {
   padding: 10px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.chart-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  height: auto; /* Adjust height for equal size chart cards */
+}
+
+.chart-card h2 {
+  font-weight: 500;
   margin-bottom: 20px;
+}
+
+.data-table {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px; /* Separation from charts */
+}
+
+.data-table h2 {
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.data-table div {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* Adjusts column width based on content */
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #333;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+@media screen and (max-width: 767px) {
+  .charts {
+    grid-template-columns: 1fr; /* Stack the charts on smaller screens */
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header select {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+select,
+button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+select:hover,
+button:hover {
+  background-color: #eaeaea;
+  transform: scale(1.02);
 }
