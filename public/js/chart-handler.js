@@ -13,6 +13,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initial chart update
   updateCharts(yearSelect.value);
+  updateMap(yearSelect.value);
+
+  // Update charts and map when the selected year changes
+  yearSelect.addEventListener("change", function () {
+    updateCharts(this.value);
+    updateMap(this.value);
+  });
 });
 
 function updateCharts(year) {
@@ -50,7 +57,7 @@ function updateCharts(year) {
             },
             title: {
               display: true,
-              text: `Wildfire Distribution in ${year}`,
+              text: `Burnt Area Distribution in ${year}`,
             },
           },
         },
@@ -64,7 +71,7 @@ function updateCharts(year) {
           labels: data.map((item) => item.Country),
           datasets: [
             {
-              label: "Wildfires",
+              label: "Burnt Area",
               data: data.map((item) => item.Wildfires),
               backgroundColor: generateColors(data.length),
               borderColor: "rgba(0, 0, 0, 1)",
@@ -80,7 +87,7 @@ function updateCharts(year) {
             },
             title: {
               display: true,
-              text: `Wildfire Comparisons in ${year}`,
+              text: `Burnt Area Comparisons in ${year}`,
             },
           },
           scales: {
@@ -108,7 +115,7 @@ function populateDataTable(data, year) {
                         <thead>
                             <tr>
                                 <th>Country</th>
-                                <th>Wildfires in ${year}</th>
+                                <th>Burnt Area in ${year}</th>
                             </tr>
                         </thead>
                         <tbody>`;
@@ -128,4 +135,77 @@ function generateColors(count) {
     colors.push(`hsl(${(360 * i) / count}, 70%, 50%)`);
   }
   return colors;
+}
+
+const countryNameToCode = {
+  PRT: "PT", // Portugal
+  ESP: "ES", // Spain
+  FRA: "FR", // France
+  ITA: "IT", // Italy
+  GRC: "GR", // Greece
+  DZA: "DZ", // Algeria
+  AUT: "AT", // Austria
+  BGR: "BG", // Bulgaria
+  HRV: "HR", // Croatia
+  CYP: "CY", // Cyprus
+  CZE: "CZ", // Czech Republic
+  EST: "EE", // Estonia
+  FIN: "FI", // Finland
+  DEU: "DE", // Germany
+  HUN: "HU", // Hungary
+  LVA: "LV", // Latvia
+  LBN: "LB", // Lebanon
+  LTU: "LT", // Lithuania
+  MAR: "MA", // Morocco
+  NLD: "NL", // Netherlands
+  MKD: "MK", // North Macedonia
+  NOR: "NO", // Norway
+  POL: "PL", // Poland
+  ROU: "RO", // Romania
+  SRB: "RS", // Serbia
+  SVK: "SK", // Slovakia
+  SVN: "SI", // Slovenia
+  SWE: "SE", // Sweden
+  CHE: "CH", // Switzerland
+  TUR: "TR", // Turkey
+  UKR: "UA", // Ukraine
+};
+
+function updateMap(year) {
+  fetch(`../src/fetch_data.php?year=${year}`)
+    .then((response) => response.json())
+    .then((data) => {
+      // Translate country codes to Highcharts format
+      const mapData = data
+        .map((item) => {
+          return {
+            "hc-key": countryNameToCode[item.Country]
+              ? countryNameToCode[item.Country].toLowerCase()
+              : undefined,
+            value: item.Wildfires,
+          };
+        })
+        .filter((item) => item["hc-key"]); // Remove any items that didn't have a matching country code
+
+      // Initialize the Highcharts map
+      Highcharts.mapChart("euMapContainer", {
+        chart: {
+          map: "custom/european-union",
+        },
+        title: {
+          text: `Burnt Area Distribution in ${year} (ha)`,
+        },
+        series: [
+          {
+            data: mapData,
+            joinBy: "hc-key",
+            name: "Burnt Area",
+            tooltip: {
+              pointFormat: "{point.name}: {point.value}",
+            },
+          },
+        ],
+      });
+    })
+    .catch((error) => console.error("Error fetching map data:", error));
 }
