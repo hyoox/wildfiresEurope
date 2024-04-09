@@ -15,24 +15,27 @@
         <header>
             <h1>Wildfire Analytics Dashboard</h1>
             <select id="yearSelect">
-                <!-- JavaScript will populate this dropdown -->
             </select>
         </header>
         <div id="euMapContainer" style="width: 100%; height: 500px; margin-bottom: 20px;"></div>
-        <div class="charts">
-            <section class="chart-card">
-                <h2>Burnt Area Distribution - Pie Chart (ha)</h2>
-                <canvas id="pieChart"></canvas>
-            </section>
-            <section class="chart-card">
-                <h2>Burnt Area Comparisons - Bar Chart (ha)</h2>
-                <canvas id="barChart"></canvas>
-            </section>
-        </div>
-        <section class="data-table">
-            <h2>Burnt Area DataTable</h2>
-            <div id="tableContainer"></div>
-        </section>
+<div class="charts">
+    <section class="chart-card full-width">
+        <h2>Burnt Area Trends - Line Chart (ha)</h2>
+        <canvas id="lineChart"></canvas>
+    </section>
+    <section class="chart-card full-width">
+        <h2>Burnt Area Comparisons - Bar Chart (ha)</h2>
+        <canvas id="barChart"></canvas>
+    </section>
+</div>
+<section class="chart-card full-width">
+    <h2>Burnt Area Distribution - Pie Chart (ha)</h2>
+    <canvas id="pieChart"></canvas>
+</section>
+<section class="data-table">
+    <h2> Burnt Area DataTable</h2>
+    <div id="tableContainer"></div>
+</section>
     </div>
     <script src="js/chart-handler.js"></script>
 </body>
