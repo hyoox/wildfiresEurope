@@ -139,7 +139,7 @@ function populateDataTable(data, year) {
                         <thead>
                             <tr>
                                 <th>Country</th>
-                                <th>Wildfires in ${year}</th>
+                                <th>Burnt Areas in ${year}</th>
                             </tr>
                         </thead>
                         <tbody>`;
