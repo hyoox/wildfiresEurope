@@ -17,7 +17,7 @@
             <select id="yearSelect">
             </select>
         </header>
-        <div id="euMapContainer" style="width: 100%; height: 500px; margin-bottom: 20px;"></div>
+        <div id="euMapContainer"></div>
 <div class="charts">
     <section class="chart-card full-width">
         <h2>Burnt Area Trends - Line Chart (ha)</h2>

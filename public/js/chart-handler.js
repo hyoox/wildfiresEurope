@@ -41,7 +41,7 @@ function updateCharts(year) {
       lineChart = new Chart(lineContext, {
         type: "line",
         data: {
-          labels: data.map((item) => item.Country), // You might want to use a different label set
+          labels: data.map((item) => item.Country),
           datasets: [
             {
               label: "Burnt Area",
@@ -110,6 +110,7 @@ function updateCharts(year) {
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           plugins: {
             legend: {
               position: "bottom",
@@ -175,7 +176,7 @@ function updateMap(year) {
             value: item.Wildfires,
           };
         })
-        .filter((item) => item["hc-key"]); // Remove any items that didn't have a matching country code
+        .filter((item) => item["hc-key"]);
 
       // Initialize the Highcharts map
       Highcharts.mapChart("euMapContainer", {

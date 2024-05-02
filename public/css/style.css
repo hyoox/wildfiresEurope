@@ -42,12 +42,17 @@ main {
   gap: 20px;
 }
 
+#euMapContainer {
+  width: 100%;
+  height: 500px;
+}
 .chart-card {
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  height: auto; /* Adjust height for equal size chart cards */
+  height: auto;
+  margin-top: 20px;
 }
 
 .chart-card h2 {
@@ -101,7 +106,7 @@ tr:nth-child(even) {
 
 @media screen and (max-width: 767px) {
   .charts {
-    grid-template-columns: 1fr; /* Stack the charts on smaller screens */
+    grid-template-columns: 1fr;
   }
 
   header {
