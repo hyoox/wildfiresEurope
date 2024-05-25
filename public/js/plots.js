@@ -113,6 +113,7 @@ function updateCharts(year) {
           maintainAspectRatio: false,
           plugins: {
             legend: {
+              display: true,
               position: "bottom",
             },
             title: {
@@ -184,7 +185,7 @@ function updateMap(year) {
           map: "custom/european-union",
         },
         title: {
-          text: `Burnt Area Distribution in ${year} (ha)`,
+          text: `Burnt Area Across Countries in ${year} (hectares)`,
         },
         series: [
           {

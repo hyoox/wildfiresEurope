@@ -1,5 +1,4 @@
 <?php
-// fetch_data.php
 require_once 'db_config.php';
 
 $year = isset($_GET['year']) ? $_GET['year'] : date("Y");

@@ -55,6 +55,11 @@ main {
   margin-top: 20px;
 }
 
+.chart-card canvas {
+  max-width: 100%;
+  max-height: calc(100% - 50px); /* Adjust canvas height */
+}
+
 .chart-card h2 {
   font-weight: 500;
   margin-bottom: 20px;
@@ -129,4 +134,12 @@ select:hover,
 button:hover {
   background-color: #eaeaea;
   transform: scale(1.02);
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  color: grey;
+  font-size: 14px;
 }
